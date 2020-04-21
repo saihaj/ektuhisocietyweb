@@ -1,4 +1,0 @@
-[project]
-name = website-ektuhi
-[servers.ghpages]
-target = ghpages+https://saihaj:5ab2662bc03546aa1db1c85841904d2b4063dc9d@saihaj/ektuhisociety
