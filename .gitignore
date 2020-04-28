@@ -1,4 +1,1 @@
-.lektor
-.gitsecret/keys/random_seed
-!*.secret
-website-ektuhi.lektorproject
+.DS_Store
