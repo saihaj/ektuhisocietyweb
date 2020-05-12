@@ -1,0 +1,39 @@
+#mainNav {
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  background: rgb(213,167,6);
+}
+
+#mainNav .navbar-brand {
+  padding: 10px 20px;
+  color: #fff;
+}
+
+#mainNav .navbar-nav > li.nav-item > a {
+  padding: 10px 20px;
+  color: #fff;
+}
+
+@media only screen and (min-width:992px) {
+  #mainNav {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+  }
+}
+
+@media only screen and (min-width:992px) {
+  #mainNav .navbar-nav > li.nav-item > a {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: rgb(213,167,6);
+  }
+}
+
+@media only screen and (min-width:992px) {
+  #mainNav .navbar-brand {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: rgb(213,167,6);
+  }
+}
+
