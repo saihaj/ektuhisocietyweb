@@ -1,9 +1,14 @@
 import React from 'react'
 
+import Layout from '../components/Layout'
+
+
 const Contact = () => (
-  <div>
-    Contact Page
-  </div>
+  <Layout title="Contact Us">
+    <p className="text-center">
+      Hey
+    </p>
+  </Layout>
 )
 
 export default Contact
