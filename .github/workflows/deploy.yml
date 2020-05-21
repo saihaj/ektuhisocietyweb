@@ -32,7 +32,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to GH Pages
-        uses: crazy-max/ghaction-github-pages@v1
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: build
           committer_name: saihaj
