@@ -35,10 +35,10 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: build
-          committer_name: saihaj
-          commiter_email: saihaj@users.noreply.github.com
+          committer: saihaj <saihaj@users.noreply.github.com>
+          author: saihaj <saihaj@users.noreply.github.com>
           keep_history: true
           allow_empty_commit: false
           commit_message: ${{ github.event.head_commit.message }}
         env:
-          GITHUB_PAT: ${{ secrets.deploy_access_token }}
+          GH_PAT: ${{ secrets.deploy_access_token }}
