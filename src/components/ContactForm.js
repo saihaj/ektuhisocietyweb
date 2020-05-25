@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React, { useState } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import { useFormik } from 'formik'
@@ -18,6 +17,7 @@ const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?
 
 export const ContactForm = () => {
   const [ formSubmit, setFormSubmit ] = useState( false )
+  const [ submissionSuccess, setSubmissionSuccess ] = useState( false )
 
   const formik = useFormik( {
     initialValues: {
@@ -46,55 +46,88 @@ export const ContactForm = () => {
     } ),
 
     onSubmit: values => {
-      alert( JSON.stringify( values, null, 2 ) )
-      setFormSubmit( true )
+      const postRequest = {
+        name: values.name,
+        from_email: values.email,
+        to_email: 'saihajpreet.singh@gmail.com',
+        phone: values.phone,
+        subject: 'Contact Form: Ek Tuhi Society',
+        message: values.message,
+      }
+
+      // Make call to serverless code
+      fetch( 'https://emailtheform.azurewebsites.net/api/EmailTheForm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( postRequest ),
+      } )
+        .then( response => {
+          setFormSubmit( true )
+          if ( response.ok ) setSubmissionSuccess( true )
+        } )
     },
 
   } )
 
-  return (
-    <div className="contact-form">
+  const renderContent = () => {
+    // Display form
+    if ( !formSubmit ) {
+      return (
+        <Form onSubmit={formik.handleSubmit}>
 
-      {!formSubmit && (
-      <Form onSubmit={formik.handleSubmit}>
+          {contactFormOptions.map( ( { id, type, placeholder, controlId, asType } ) => (
 
-        {contactFormOptions.map( ( { id, type, placeholder, controlId, asType } ) => (
+            <Form.Group key={id} controlId={controlId}>
 
-          <Form.Group key={id} controlId={controlId}>
+              <Form.Control
+                required
+                name={id}
+                type={type}
+                placeholder={placeholder}
+                as={asType}
+                {...formik.getFieldProps( id )}
+              />
 
-            <Form.Control
-              required
-              name={id}
-              type={type}
-              placeholder={placeholder}
-              as={asType}
-              {...formik.getFieldProps( id )}
-            />
+              {formik.touched[ id ] && formik.errors[ id ] ? (
+                <div className="error-message">{formik.errors[ id ]}</div>
+              ) : null}
 
-            {formik.touched[ id ] && formik.errors[ id ] ? (
-              <div className="error-message">{formik.errors[ id ]}</div>
-            ) : null}
+            </Form.Group>
 
-          </Form.Group>
+          ) )}
 
-        ) )}
+          <Button type="submit" disabled={formik.isSubmitting}>Submit form</Button>
 
-        <Button type="submit" disabled={formik.isSubmitting}>Submit form</Button>
+        </Form>
+      )
+    }
 
-      </Form>
-      )}
+    // Response was sent
+    if ( submissionSuccess ) {
+      return (
+        <Container>
 
-      {formSubmit && (
+          <h4 className="text-center">
+            We will get back to you soon!
+          </h4>
+
+        </Container>
+      )
+    }
+
+    // Failed to send reposne
+    return (
       <Container>
 
-        <h4 className="text-center">
-          We will get back to you soon!
+        <h4 className="text-center fail">
+          There was an error. Please try again!!!
         </h4>
 
       </Container>
-      )}
+    )
+  }
 
-    </div>
-
+  return (
+    <div className="contact-form">{renderContent()}</div>
   )
 }
