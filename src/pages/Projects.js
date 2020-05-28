@@ -4,7 +4,8 @@ import Layout from '../components/Layout'
 
 const Projects = () => (
   <Layout title="Projects">
-    Projects Page
+    Projects
+    Test codesandbox CI
   </Layout>
 )
 
