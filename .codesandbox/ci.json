@@ -1,5 +1,0 @@
-{
-    "installCommand":"install",
-    "buildCommand":"build",
-    "sandboxes":["new"]
-}
