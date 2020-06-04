@@ -1,3 +1,7 @@
+This project is no longer maintained.
+
+A react-bootstrap website for Ek Tuhi Charitable Society. This uses [EmailTheForm](https://github.com/saihaj/emailtheform) to power the contact form. Feel free to use this as a template for react-bootstrap website or checkout my [template](https://github.com/saihaj/saihaj-create-react-app) that I used to make this website.
+
 # Development Setup
 
 ## Prerquisites
